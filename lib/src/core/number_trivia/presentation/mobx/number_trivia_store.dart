@@ -19,7 +19,7 @@ abstract class NumberTriviaStoreBase with Store {
   String numberString = '';
 
   @observable
-  String triviaText = 'BEM VINDO - OLÁ MUNDO';
+  String triviaText = 'Start searching';
 
   @observable
   int triviaNumber = 0;
@@ -40,14 +40,14 @@ abstract class NumberTriviaStoreBase with Store {
       },
       (r) async {
         final failureOrTrivia = await concrete(Params(number: r));
+        isLoading = false;
         failureOrTrivia.fold((l) {
           triviaText = failureToMessage(l);
-          isLoading = false;
           return;
         }, (r) {
           triviaText = r.text;
           triviaNumber = r.number;
-          isLoading = false;
+
           return;
         });
       },
@@ -57,18 +57,15 @@ abstract class NumberTriviaStoreBase with Store {
   @action
   Future<void> getRandomNumberTrivia() async {
     isLoading = true;
-
     final failureOrTrivia = await random(NoParams());
+    isLoading = false;
+
     failureOrTrivia.fold((l) {
       triviaText = failureToMessage(l);
-      isLoading = false;
       return;
     }, (r) {
       triviaText = r.text;
       triviaNumber = r.number;
-      isLoading = false;
-      print(r.text);
-      print(r.number);
       return;
     });
   }
@@ -79,6 +76,8 @@ abstract class NumberTriviaStoreBase with Store {
         return 'Server Failure';
       case CacheFailure:
         return 'Cache Failure';
+      case InvalidInputFailure:
+        return 'Invalid input, please enter a valid integer';
       default:
         return 'Unexpected Error';
     }

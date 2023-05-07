@@ -24,7 +24,7 @@ class AppModule extends Module {
   @override
   List<Bind> get binds => [
         Bind.instance<Realm>(Realm(config)),
-        Bind.factory((i) => NumberTriviaStore(i(), i(), i())),
+        Bind.lazySingleton((i) => NumberTriviaStore(i(), i(), i())),
         Bind.lazySingleton((i) => GetConcreteNumberTrivia(i())),
         Bind.lazySingleton((i) => GetRandomNumberTrivia(i())),
         Bind.lazySingleton<NumberTriviaRepository>(
