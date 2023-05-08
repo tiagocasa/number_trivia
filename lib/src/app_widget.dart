@@ -13,6 +13,7 @@ class AppWidget extends StatefulWidget {
 
 class _AppWidgetState extends State<AppWidget> {
   final configuration = Modular.get<ConfigurationStore>();
+
   @override
   Widget build(BuildContext context) {
     Modular.setInitialRoute('/home/');

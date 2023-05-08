@@ -4,6 +4,7 @@ import 'package:number_trivia/src/core/number_trivia/domain/usecases/get_random_
 import 'package:number_trivia/src/shared/util/input_converter.dart';
 
 import '../../../../shared/error/failure.dart';
+import '../../../../shared/util/constants.dart';
 
 part 'number_trivia_store.g.dart';
 
@@ -77,7 +78,7 @@ abstract class NumberTriviaStoreBase with Store {
       case CacheFailure:
         return 'Cache Failure';
       case InvalidInputFailure:
-        return 'Invalid input \n Please enter a valid integer';
+        return INVALID_INPUT_FAILURE;
       default:
         return 'Unexpected Error';
     }

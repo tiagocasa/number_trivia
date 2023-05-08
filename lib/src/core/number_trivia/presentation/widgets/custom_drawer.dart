@@ -23,7 +23,7 @@ class CustomDrawer extends StatelessWidget {
         ),
         const NavigationDrawerDestination(
           icon: Icon(Icons.settings),
-          label: Text('Configurações'),
+          label: Text('Configurations'),
         ),
         NavigationDrawerDestination(
           icon: const Icon(Icons.exit_to_app),

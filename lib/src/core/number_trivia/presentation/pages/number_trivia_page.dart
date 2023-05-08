@@ -4,17 +4,19 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:number_trivia/src/core/number_trivia/presentation/mobx/number_trivia_store.dart';
+import 'package:intl/intl.dart';
 
 import '../widgets/custom_drawer.dart';
 
 class NumberTriviaPage extends StatelessWidget {
   const NumberTriviaPage({super.key});
-  // MobX
 
   @override
   Widget build(BuildContext context) {
-    //final text = context.watch<NumberTriviaStore>((store) => store.triviaText);
+    var formatter = NumberFormat('###,###');
+
     final numberTriviaStore = Modular.get<NumberTriviaStore>();
+
     return Scaffold(
         drawer: const CustomDrawer(),
         appBar: AppBar(
@@ -38,7 +40,9 @@ class NumberTriviaPage extends StatelessWidget {
                           AutoSizeText(
                             numberTriviaStore.triviaNumber == 0
                                 ? ''
-                                : numberTriviaStore.triviaNumber.toString(),
+                                : formatter
+                                    .format(numberTriviaStore.triviaNumber)
+                                    .toString(),
                             style: const TextStyle(fontSize: 80),
                             maxLines: 1,
                           ),
@@ -99,7 +103,7 @@ class TriviaControls extends StatelessWidget {
             String? value,
           ) {
             return int.tryParse(value!) == null
-                ? 'Shoulb be a valid number'
+                ? 'Should be a valid number'
                 : null;
           },
         ),
@@ -122,7 +126,7 @@ class TriviaControls extends StatelessWidget {
                     null;
                   }
                 },
-                child: const Text('Search'),
+                child: const Text('Search Trivia'),
               ),
             ),
             const SizedBox(width: 10),
@@ -137,7 +141,7 @@ class TriviaControls extends StatelessWidget {
                 controller.clear();
                 await numberTriviaStore.getRandomNumberTrivia();
               },
-              child: const Text('Get Random Trivia'),
+              child: const Text('Random Trivia'),
             )),
           ],
         )
