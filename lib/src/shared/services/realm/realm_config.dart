@@ -15,6 +15,5 @@ LocalConfiguration config = Configuration.local(
         'You have 0 trivias cached in your local memory',
       ),
     );
-    realm.add(ConfigurationRealm('system'));
   },
 );

@@ -7,6 +7,6 @@ class SaveConfiguration {
   SaveConfiguration(this.repository);
 
   void call(ThemeMode? themeMode) {
-    return repository.saveConfiguration(themeMode);
+    repository.saveConfiguration(themeMode);
   }
 }

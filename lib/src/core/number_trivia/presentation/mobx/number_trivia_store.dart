@@ -27,8 +27,6 @@ abstract class NumberTriviaStoreBase with Store {
   @observable
   bool isLoading = false;
 
-  //TODO: ADICIONAR UM COMPUTED DO INPUT SER VALIDO, FAZER EFEITO DE SENHA QUE FICA VERMELHO
-
   @action
   Future<void> getConcreteNumberTrivia(String numberString) async {
     isLoading = true;

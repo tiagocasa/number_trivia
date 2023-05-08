@@ -15,8 +15,15 @@ class ConfigurationLocalDataSourceImpl implements ConfigurationLocalDataSource {
 
   @override
   ConfigurationModel getConfiguration() {
-    final configuration = realm.all<ConfigurationRealm>().first;
-
+    ConfigurationRealm configuration;
+    try {
+      configuration = realm.all<ConfigurationRealm>().first;
+    } on StateError {
+      realm.write(() {
+        realm.add(ConfigurationRealm('system'));
+      });
+      configuration = ConfigurationRealm('system');
+    }
     final themeName = _getThemeModeByName(configuration.themeModeName);
     return ConfigurationModel(themeMode: themeName);
   }
@@ -27,14 +34,20 @@ class ConfigurationLocalDataSourceImpl implements ConfigurationLocalDataSource {
 
   @override
   void saveConfiguration(ThemeMode? themeMode) {
-    final themeName = getThemeModeName(themeMode);
-    final model = realm.all<ConfigurationRealm>().first;
-    realm.write(() {
-      model.themeModeName = themeName;
-    });
+    final themeName = _getThemeModeName(themeMode);
+    try {
+      var model = realm.all<ConfigurationRealm>().first;
+      realm.write(() {
+        model.themeModeName = themeName;
+      });
+    } on StateError {
+      realm.write(() {
+        realm.add(ConfigurationRealm('system'));
+      });
+    }
   }
 
-  String getThemeModeName(ThemeMode? themeMode) {
+  String _getThemeModeName(ThemeMode? themeMode) {
     if (themeMode?.index == 1) {
       return 'light';
     } else if (themeMode?.index == 2) {

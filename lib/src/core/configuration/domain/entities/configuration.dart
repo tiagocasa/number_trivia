@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 class Configuration {
   final ThemeMode? themeMode;
-  const Configuration({
+  Configuration({
     this.themeMode,
   });
 }

@@ -8,7 +8,6 @@ import 'package:number_trivia/src/shared/util/input_converter.dart';
 import 'package:realm/realm.dart';
 
 import 'core/configuration/configuration_module.dart';
-import 'core/configuration/presentation/mobx/configuration_store.dart';
 
 class AppModule extends Module {
   @override
