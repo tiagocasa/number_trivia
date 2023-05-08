@@ -3,7 +3,7 @@ import 'package:equatable/equatable.dart';
 import 'package:number_trivia/src/core/number_trivia/domain/entities/number_trivia.dart';
 import 'package:number_trivia/src/core/number_trivia/domain/repositories/number_trivia_repository.dart';
 import 'package:number_trivia/src/shared/error/failure.dart';
-import 'package:number_trivia/src/shared/usecases/usecases.dart';
+import 'package:number_trivia/src/shared/util/usecases.dart';
 
 class GetConcreteNumberTrivia implements Usecase<NumberTrivia, Params> {
   final NumberTriviaRepository repository;

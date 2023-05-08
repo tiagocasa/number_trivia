@@ -1,7 +1,5 @@
 import 'dart:math';
-
 import 'package:number_trivia/src/core/number_trivia/data/models/number_trivia_model.dart';
-import 'package:number_trivia/src/shared/error/exceptions.dart';
 import 'package:number_trivia/src/shared/services/realm/number_trivia_realm.dart';
 import 'package:realm/realm.dart';
 
@@ -35,10 +33,6 @@ class NumberTriviaLocalDataSourceImpl implements NumberTriviaLocalDataSource {
       number: selectedTrivia.number,
       text: selectedTrivia.text,
     );
-    if (myTrivia != null) {
-      return myTrivia;
-    } else {
-      throw CacheExceptions();
-    }
+    return myTrivia;
   }
 }

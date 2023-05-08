@@ -24,6 +24,10 @@ ThemeData get lightTheme => ThemeData(
         backgroundColor: _lightColorScheme.primary,
         foregroundColor: _lightColorScheme.onPrimary,
       ),
+      buttonTheme: ButtonThemeData(
+        buttonColor: _lightColorScheme.error,
+        textTheme: ButtonTextTheme.primary,
+      ),
     );
 
 SegmentedButtonThemeData get _segmentedButtonTheme => SegmentedButtonThemeData(

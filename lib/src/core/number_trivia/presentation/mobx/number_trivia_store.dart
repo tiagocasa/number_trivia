@@ -27,6 +27,8 @@ abstract class NumberTriviaStoreBase with Store {
   @observable
   bool isLoading = false;
 
+  //TODO: ADICIONAR UM COMPUTED DO INPUT SER VALIDO, FAZER EFEITO DE SENHA QUE FICA VERMELHO
+
   @action
   Future<void> getConcreteNumberTrivia(String numberString) async {
     isLoading = true;
@@ -77,7 +79,7 @@ abstract class NumberTriviaStoreBase with Store {
       case CacheFailure:
         return 'Cache Failure';
       case InvalidInputFailure:
-        return 'Invalid input, please enter a valid integer';
+        return 'Invalid input \n Please enter a valid integer';
       default:
         return 'Unexpected Error';
     }

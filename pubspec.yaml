@@ -24,6 +24,7 @@ dependencies:
   dartz: ^0.10.1
   data_connection_checker_nulls: ^0.0.2
   modal_progress_hud_nsn: ^0.4.0
+  auto_size_text: ^3.0.0
 
 dev_dependencies:
   flutter_test:
