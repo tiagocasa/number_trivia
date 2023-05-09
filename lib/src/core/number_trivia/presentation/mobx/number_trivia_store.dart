@@ -28,20 +28,28 @@ abstract class NumberTriviaStoreBase with Store {
   @observable
   bool isLoading = false;
 
+  void _changeLoading() {
+    if (isLoading) {
+      isLoading = false;
+    } else {
+      isLoading = true;
+    }
+  }
+
   @action
   Future<void> getConcreteNumberTrivia(String numberString) async {
-    isLoading = true;
+    _changeLoading();
     final numberConverted = converter.stringtoUnisgnedInteger(numberString);
     await numberConverted.fold(
       (l) {
         triviaNumber = 0;
         triviaText = failureToMessage(l);
-        isLoading = false;
+        _changeLoading();
         return;
       },
       (r) async {
         final failureOrTrivia = await concrete(Params(number: r));
-        isLoading = false;
+        _changeLoading();
         failureOrTrivia.fold((l) {
           triviaText = failureToMessage(l);
           return;
@@ -57,9 +65,9 @@ abstract class NumberTriviaStoreBase with Store {
 
   @action
   Future<void> getRandomNumberTrivia() async {
-    isLoading = true;
+    _changeLoading();
     final failureOrTrivia = await random(NoParams());
-    isLoading = false;
+    _changeLoading();
 
     failureOrTrivia.fold((l) {
       triviaText = failureToMessage(l);
@@ -74,9 +82,9 @@ abstract class NumberTriviaStoreBase with Store {
   String failureToMessage(Failure failure) {
     switch (failure.runtimeType) {
       case ServerFailure:
-        return 'Server Failure';
+        return SERVER_FAILURE;
       case CacheFailure:
-        return 'Cache Failure';
+        return CACHE_FAILURE;
       case InvalidInputFailure:
         return INVALID_INPUT_FAILURE;
       default:

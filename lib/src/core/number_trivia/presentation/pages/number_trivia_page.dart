@@ -7,6 +7,7 @@ import 'package:number_trivia/src/core/number_trivia/presentation/mobx/number_tr
 import 'package:intl/intl.dart';
 
 import '../widgets/custom_drawer.dart';
+import '../widgets/trivia_controls.dart';
 
 class NumberTriviaPage extends StatelessWidget {
   const NumberTriviaPage({super.key});
@@ -68,84 +69,5 @@ class NumberTriviaPage extends StatelessWidget {
             ),
           ),
         ));
-  }
-}
-
-class TriviaControls extends StatelessWidget {
-  const TriviaControls({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final numberTriviaStore = Modular.get<NumberTriviaStore>();
-    String? inputString;
-    final controller = TextEditingController();
-    return Column(
-      children: <Widget>[
-        TextFormField(
-          controller: controller,
-          keyboardType: TextInputType.number,
-          decoration: const InputDecoration(hintText: 'Input a number'),
-          onChanged: (value) {
-            inputString = value;
-          },
-          onFieldSubmitted: (_) async {
-            if (int.tryParse(inputString!) != null) {
-              controller.clear();
-              await numberTriviaStore.getConcreteNumberTrivia(inputString!);
-            } else {
-              null;
-            }
-          },
-          autovalidateMode: AutovalidateMode.onUserInteraction,
-          validator: (
-            String? value,
-          ) {
-            return int.tryParse(value!) == null
-                ? 'Should be a valid number'
-                : null;
-          },
-        ),
-        const SizedBox(height: 10),
-        Row(
-          children: <Widget>[
-            Expanded(
-              child: TextButton(
-                style: TextButton.styleFrom(
-                    backgroundColor:
-                        Theme.of(context).colorScheme.tertiaryContainer,
-                    foregroundColor:
-                        Theme.of(context).colorScheme.onPrimaryContainer),
-                onPressed: () async {
-                  if (int.tryParse(inputString!) != null) {
-                    controller.clear();
-                    await numberTriviaStore
-                        .getConcreteNumberTrivia(inputString!);
-                  } else {
-                    null;
-                  }
-                },
-                child: const Text('Search Trivia'),
-              ),
-            ),
-            const SizedBox(width: 10),
-            Expanded(
-                child: TextButton(
-              style: TextButton.styleFrom(
-                  backgroundColor:
-                      Theme.of(context).colorScheme.primaryContainer,
-                  foregroundColor:
-                      Theme.of(context).colorScheme.onPrimaryContainer),
-              onPressed: () async {
-                controller.clear();
-                await numberTriviaStore.getRandomNumberTrivia();
-              },
-              child: const Text('Random Trivia'),
-            )),
-          ],
-        )
-      ],
-    );
   }
 }

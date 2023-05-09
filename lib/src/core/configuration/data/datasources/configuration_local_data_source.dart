@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:number_trivia/src/shared/services/realm/configuration_realm.dart';
+import 'package:flutter/services.dart';
+import 'package:number_trivia/src/core/number_trivia/data/realm/number_trivia_realm.dart';
 import 'package:realm/realm.dart';
 
 import '../models/configuration_model.dart';
+import '../realm/configuration_realm.dart';
 
 abstract class ConfigurationLocalDataSource {
   ConfigurationModel getConfiguration();
   void saveConfiguration(ThemeMode? themeMode);
+  void clearCacheConfiguration();
 }
 
 class ConfigurationLocalDataSourceImpl implements ConfigurationLocalDataSource {
@@ -54,5 +57,12 @@ class ConfigurationLocalDataSourceImpl implements ConfigurationLocalDataSource {
       return 'dark';
     }
     return 'system';
+  }
+
+  @override
+  void clearCacheConfiguration() {
+    realm.write(() => realm.deleteAll<ConfigurationRealm>());
+    realm.write(() => realm.deleteAll<NumberTriviaRealm>());
+    SystemNavigator.pop();
   }
 }

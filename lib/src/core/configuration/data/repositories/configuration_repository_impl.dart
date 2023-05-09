@@ -20,4 +20,9 @@ class ConfigurationRepositoryImpl implements ConfigurationRepository {
   void saveConfiguration(ThemeMode? themeMode) {
     localDataSource.saveConfiguration(themeMode);
   }
+
+  @override
+  void clearCacheConfiguration() {
+    localDataSource.clearCacheConfiguration();
+  }
 }

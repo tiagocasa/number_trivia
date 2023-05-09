@@ -17,7 +17,7 @@ class _ConfigurationPageState extends State<ConfigurationPage> {
     final configuration = Modular.get<ConfigurationStore>();
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Configurações')),
+      appBar: AppBar(title: const Text('Configurations')),
       body: Padding(
         padding: const EdgeInsets.all(30),
         child: Observer(
@@ -26,7 +26,7 @@ class _ConfigurationPageState extends State<ConfigurationPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Tema',
+                  'Theme',
                   style: Theme.of(context).textTheme.titleMedium,
                 ),
                 const SizedBox(
@@ -36,7 +36,7 @@ class _ConfigurationPageState extends State<ConfigurationPage> {
                   value: ThemeMode.system,
                   groupValue: configuration.themeMode,
                   title: Text(
-                    'Sistema',
+                    'System',
                     style: Theme.of(context).textTheme.bodyLarge,
                   ),
                   onChanged: configuration.changeThemeMode,
@@ -45,7 +45,7 @@ class _ConfigurationPageState extends State<ConfigurationPage> {
                   value: ThemeMode.light,
                   groupValue: configuration.themeMode,
                   title: Text(
-                    'Claro',
+                    'Light',
                     style: Theme.of(context).textTheme.bodyLarge,
                   ),
                   onChanged: configuration.changeThemeMode,
@@ -54,7 +54,7 @@ class _ConfigurationPageState extends State<ConfigurationPage> {
                   value: ThemeMode.dark,
                   groupValue: configuration.themeMode,
                   title: Text(
-                    'Escuro',
+                    'Dark',
                     style: Theme.of(context).textTheme.bodyLarge,
                   ),
                   onChanged: configuration.changeThemeMode,
@@ -63,16 +63,18 @@ class _ConfigurationPageState extends State<ConfigurationPage> {
                   height: 20,
                 ),
                 Text(
-                  'Controle de dados',
+                  'Data control',
                   style: Theme.of(context).textTheme.titleMedium,
                 ),
                 const SizedBox(
                   height: 10,
                 ),
                 OutlinedButton(
-                  onPressed: () {}, // appStore.deleteApp,
+                  onPressed: () {
+                    configuration.delete();
+                  }, // appStore.deleteApp,
                   child: const Text(
-                    'Apagar cache e reiniciar o app',
+                    'Clear cache and exit app',
                   ),
                 )
               ],

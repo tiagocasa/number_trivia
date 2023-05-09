@@ -51,6 +51,17 @@ mixin _$ConfigurationStore on ConfigurationStoreBase, Store {
   }
 
   @override
+  void delete() {
+    final _$actionInfo = _$ConfigurationStoreBaseActionController.startAction(
+        name: 'ConfigurationStoreBase.delete');
+    try {
+      return super.delete();
+    } finally {
+      _$ConfigurationStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 themeMode: ${themeMode}
