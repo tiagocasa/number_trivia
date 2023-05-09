@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.bighouse.number_trivia">
+    package="com.BigHouseSturio.NumberTrivia">
    <uses-permission android:name="android.permission.INTERNET"/>
    <application
         android:label="Number Trivia"
