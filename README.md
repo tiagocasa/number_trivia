@@ -4,13 +4,22 @@
 
 ## Table of Contents
 
+- [Project Description](#project-description)
 - [Packages Used](#packages-used)
 - [Clean Architecture](#clean-architecture)
 - [Project Structure](#project-structure)
 - [Testing](#testing)
-- [Project Description](#project-description)
 - [How to Run](#how-to-run)
 - [Playstore](#playstore)
+
+
+## Project Description
+
+The Number Trivia project is a Flutter application that allows users to retrieve interesting trivia about numbers. Users can enter a specific number or choose to fetch a random trivia fact. The application makes use of an external API to fetch the trivia data. In case of no internet connection the trivia is fetch from local database.
+
+This project serves as a practical demonstration of clean architecture principles, emphasizing the separation of concerns and the testability of the code. The combination of clean architecture and TDD practices leads to a robust and maintainable codebase.
+
+Feel free to explore the code and provide any feedback or suggestions. Contributions are also welcome!
 
 ## Packages Used
 
@@ -43,14 +52,6 @@ The project is organized into two main modules:
 ## Testing
 
 Unit tests are an integral part of this project, ensuring the correctness and stability of the codebase. The tests are implemented using the Dart **'test'** package and the **'mocktail'** library for mockt dependencies.
-
-## Project Description
-
-The Number Trivia project is a Flutter application that allows users to retrieve interesting trivia about numbers. Users can enter a specific number or choose to fetch a random trivia fact. The application makes use of an external API to fetch the trivia data.
-
-This project serves as a practical demonstration of clean architecture principles, emphasizing the separation of concerns and the testability of the code. The combination of clean architecture and TDD practices leads to a robust and maintainable codebase.
-
-Feel free to explore the code and provide any feedback or suggestions. Contributions are also welcome!
 
 ## How to Run
 To run the Number Trivia application locally, follow these steps:
