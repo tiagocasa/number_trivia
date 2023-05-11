@@ -1,4 +1,4 @@
-package com.bighouse.number_trivia
+package com.BigHouseStudio.NumberTrivia
 
 import io.flutter.embedding.android.FlutterActivity
 
